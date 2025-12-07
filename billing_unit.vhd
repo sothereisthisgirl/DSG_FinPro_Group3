@@ -3,14 +3,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity billing_unit is
-    Port ( 
-        clk           : in  STD_LOGIC;
-        reset         : in  STD_LOGIC;
-        mode_select   : in  STD_LOGIC_VECTOR(2 downto 0);
-        upgrade_flag  : in  STD_LOGIC;
-        drying_flag   : in  STD_LOGIC;
-        price         : out STD_LOGIC_VECTOR(7 downto 0)
-    );
+    Port ( clk           : in  STD_LOGIC;
+           reset         : in  STD_LOGIC;
+           mode_select   : in  STD_LOGIC_VECTOR(2 downto 0);
+           upgrade_flag  : in  STD_LOGIC;
+           drying_flag   : in  STD_LOGIC;
+           price         : out STD_LOGIC_VECTOR(7 downto 0) );
 end billing_unit;
 
 architecture Behavioral of billing_unit is
@@ -29,6 +27,7 @@ begin
                 when "011" => cost <= 40;
                 when others => cost <= 50;
             end case;
+
             if upgrade_flag = '1' then
                 cost <= cost + 20;
             end if;
